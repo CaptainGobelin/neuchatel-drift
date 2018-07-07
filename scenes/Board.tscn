@@ -9,7 +9,7 @@
 custom_solver_bias = 0.0
 extents = Vector2( 32, 32 )
 
-[sub_resource type="Animation" id=3]
+[sub_resource type="Animation" id=2]
 
 resource/name = "hide_label"
 length = 0.1
@@ -26,9 +26,8 @@ tracks/0/keys = {
 "values": [ 1.0, 0.0 ]
 }
 
-[sub_resource type="Animation" id=2]
+[sub_resource type="Animation" id=3]
 
-resource/name = "show_label"
 length = 0.1
 loop = false
 step = 0.1
@@ -63,7 +62,7 @@ size_flags/vertical = 0
 margin/left = -128.0
 margin/top = -128.0
 margin/right = 0.0
-margin/bottom = -114.0
+margin/bottom = -96.0
 custom_fonts/font = ExtResource( 3 )
 text = "R pour lire"
 align = 1
@@ -74,6 +73,7 @@ max_lines_visible = -1
 
 [node name="Area2D" type="Area2D" parent="."]
 
+visibility/visible = false
 transform/pos = Vector2( 0, 1.90735e-06 )
 transform/scale = Vector2( 6, 2 )
 input/pickable = true
@@ -100,10 +100,10 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 2
 margin/left = -384.0
-margin/top = -512.0
+margin/top = -320.0
 margin/right = 384.0
-margin/bottom = -128.0
-color = Color( 0, 0, 0, 0.498039 )
+margin/bottom = -64.0
+color = Color( 0, 0, 0, 0.677569 )
 
 [node name="TextePanneau" type="Label" parent="FondPanneau"]
 
@@ -113,9 +113,9 @@ focus/stop_mouse = true
 size_flags/horizontal = 2
 size_flags/vertical = 0
 margin/left = 64.0
-margin/top = 64.0
+margin/top = 0.0
 margin/right = 384.0
-margin/bottom = 128.0
+margin/bottom = 64.0
 custom_fonts/font = ExtResource( 3 )
 text = "Je Suis Un Panneau"
 align = 1
@@ -129,8 +129,8 @@ max_lines_visible = -1
 playback/process_mode = 1
 playback/default_blend_time = 0.0
 root/root = NodePath("..")
-anims/hide_label = SubResource( 3 )
-anims/show_label = SubResource( 2 )
+anims/hide_label = SubResource( 2 )
+anims/show_label = SubResource( 3 )
 playback/active = true
 playback/speed = 1.0
 blend_times = [  ]

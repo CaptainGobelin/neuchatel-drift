@@ -3,6 +3,8 @@ extends KinematicBody2D
 onready var animator = get_node("AnimationPlayer")
 onready var checkpoints = get_node("../Checkpoints")
 
+var fireball_loc = preload("res://scenes/Fireball.tscn")
+
 var MAX_VELOCITY = 15*60
 var velocity = Vector2(0, 0)
 var on_ground = true
@@ -25,10 +27,16 @@ func _input(event):
 		dash_position = true
 	if event.is_action_released("dash") and can_dash:
 		to_dash = true
+	if event.is_action_pressed("boule_de_feu"):
+		var fireball_instance = fireball_loc.instance()
+		fireball_instance.set_global_pos(get_global_pos())
+		if get_node("Sprite").is_flipped_h():
+			fireball_instance.set_velocity(Vector2(-23 * 60, 0))
+		else:
+			fireball_instance.set_velocity(Vector2(23 * 60, 0))
+		get_tree().get_root().add_child(fireball_instance)
 
 func _fixed_process(delta):
-	print("score:" + str(score))
-	print(anim_to_play)
 	if animator.get_current_animation() != "black_flash":
 		if (Input.is_action_pressed("ui_right")) and velocity.x < MAX_VELOCITY:
 			if on_ground:
@@ -68,7 +76,6 @@ func _fixed_process(delta):
 		if (n.y < 0):
 			on_ground = true
 			can_dash = true
-		print(get_collider().is_in_group("Killer"))
 		if get_collider().is_in_group("Killer"):
 			respawn()
 		elif get_collider().is_in_group("Bumper"):
@@ -87,11 +94,17 @@ func _fixed_process(delta):
 			move(motion)
 	if dash_position:
 		anim_to_play = "dash_prep"
-	if velocity.x > 0:
-		anim_to_play = "run"
+	elif velocity.x > 0:
+		if on_ground:
+			anim_to_play = "run"
+		else:
+			anim_to_play = "jump"
 		get_node("Sprite").set_flip_h(false)
 	elif velocity.x < 0:
-		anim_to_play = "run"
+		if on_ground:
+			anim_to_play = "run"
+		else:
+			anim_to_play = "jump"
 		get_node("Sprite").set_flip_h(true)
 	elif anim_to_play != "black_flash":
 		anim_to_play = "normal"

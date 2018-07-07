@@ -1,10 +1,11 @@
-[gd_scene load_steps=6 format=1]
+[gd_scene load_steps=7 format=1]
 
 [ext_resource path="res://TilesetBasic.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/PikeBasic.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Board.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/Coin.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/EnemyBalloon.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/Coin.tscn" type="PackedScene" id=6]
 
 [node name="Main" type="Node2D"]
 
@@ -66,14 +67,15 @@ transform/pos = Vector2( -5248, 960 )
 
 [node name="Enemies" type="Node2D" parent="."]
 
-transform/pos = Vector2( -320, -64 )
+[node name="EnemyBalloon" parent="Enemies" instance=ExtResource( 5 )]
+
+transform/pos = Vector2( -3840, 1024 )
 
 [node name="LoS" type="RayCast2D" parent="."]
 
-visibility/visible = false
 enabled = true
 cast_to = Vector2( 0, 50 )
-layer_mask = 1
+layer_mask = 3
 type_mask = 15
 
 [node name="Checkpoints" type="Node2D" parent="."]
@@ -98,7 +100,7 @@ bias/bias = 0.0
 collision/exclude_nodes = true
 softness = 0.0
 
-[node name="Coin" parent="." instance=ExtResource( 5 )]
+[node name="Coin" parent="." instance=ExtResource( 6 )]
 
 transform/pos = Vector2( -4229.16, 1353.65 )
 

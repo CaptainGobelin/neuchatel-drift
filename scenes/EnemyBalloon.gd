@@ -18,7 +18,7 @@ func _fixed_process(delta):
 	var player_pos = player.get_global_pos()
 	LoS.set_global_pos(get_global_pos())
 	LoS.set_cast_to(2*(player_pos-get_pos()))
-	if (LoS.is_colliding()):
+	if (LoS.is_colliding() and get_global_pos().distance_to(player_pos) < 800):
 		if (LoS.get_collider().is_in_group("Player")):
 			anim_to_play = "angry"
 			if (abs(get_global_pos().x-player_pos.x) < 1):
