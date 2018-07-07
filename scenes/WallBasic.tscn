@@ -1,7 +1,22 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=21 format=1]
 
 [ext_resource path="res://dat/img/wall_test.png" type="Texture" id=1]
 [ext_resource path="res://dat/img/herbes_tiles.png" type="Texture" id=2]
+[ext_resource path="res://dat/img/interieur_cabane.png" type="Texture" id=3]
+[ext_resource path="res://dat/img/tronc_tiles.png" type="Texture" id=4]
+[ext_resource path="res://dat/img/branches_tiles.png" type="Texture" id=5]
+[ext_resource path="res://dat/img/roche_tiles.png" type="Texture" id=6]
+[ext_resource path="res://dat/img/roche_tiles_left.png" type="Texture" id=7]
+[ext_resource path="res://dat/img/roche_tiles_bot.png" type="Texture" id=8]
+[ext_resource path="res://dat/img/roche_tiles_right.png" type="Texture" id=9]
+[ext_resource path="res://dat/img/roche_tiles_BL.png" type="Texture" id=10]
+[ext_resource path="res://dat/img/roche_tiles_BR.png" type="Texture" id=11]
+[ext_resource path="res://dat/img/roche_tiles_TL.png" type="Texture" id=12]
+[ext_resource path="res://dat/img/roche_tiles_TR.png" type="Texture" id=13]
+[ext_resource path="res://dat/img/roche_tiles_in_TL.png" type="Texture" id=14]
+[ext_resource path="res://dat/img/roche_tiles_in_BL.png" type="Texture" id=15]
+[ext_resource path="res://dat/img/roche_tiles_in_BR.png" type="Texture" id=16]
+[ext_resource path="res://dat/img/roche_tiles_in_TR.png" type="Texture" id=17]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -13,10 +28,16 @@ extents = Vector2( 64, 64 )
 custom_solver_bias = 0.0
 extents = Vector2( 64, 64 )
 
+[sub_resource type="RectangleShape2D" id=3]
+
+custom_solver_bias = 0.0
+extents = Vector2( 63.6879, 63.71 )
+
 [node name="TilesetBasic" type="Node2D"]
 
 [node name="WallBasic" type="Sprite" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 128, 128 )
 texture = ExtResource( 1 )
 
@@ -41,6 +62,7 @@ _update_shape_index = 0
 
 [node name="Grass" type="Sprite" parent="."]
 
+editor/display_folded = true
 transform/pos = Vector2( 304.921, 114.569 )
 texture = ExtResource( 2 )
 offset = Vector2( 0, -22 )
@@ -49,7 +71,7 @@ offset = Vector2( 0, -22 )
 
 input/pickable = false
 shapes/0/shape = SubResource( 2 )
-shapes/0/transform = Matrix32( 1, 0, 0, 1, -1.00632, -18.5232 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0.07901, -10.569 )
 shapes/0/trigger = false
 collision/layers = 1
 collision/mask = 1
@@ -60,8 +82,366 @@ bounce = 0.0
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="Grass/StaticBody2D"]
 
-transform/pos = Vector2( -1.00632, -18.5232 )
+transform/pos = Vector2( 0.07901, -10.569 )
 shape = SubResource( 2 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Interior_wood" type="Sprite" parent="."]
+
+transform/pos = Vector2( 128, 288 )
+texture = ExtResource( 3 )
+
+[node name="Black" type="Sprite" parent="."]
+
+transform/pos = Vector2( 126, 446.001 )
+texture = ExtResource( 3 )
+modulate = Color( 0, 0, 0, 1 )
+
+[node name="Wood" type="Sprite" parent="."]
+
+transform/pos = Vector2( 293.631, 282.551 )
+texture = ExtResource( 4 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Wood"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wood/StaticBody2D"]
+
+shape = SubResource( 3 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Wood1" type="Sprite" parent="."]
+
+transform/pos = Vector2( 450.632, 284.551 )
+texture = ExtResource( 5 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="Wood1"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Wood1/StaticBody2D"]
+
+shape = SubResource( 3 )
+trigger = false
+_update_shape_index = 0
+
+[node name="cavernTop" type="Sprite" parent="."]
+
+transform/pos = Vector2( 290.631, 447.552 )
+texture = ExtResource( 6 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="cavernTop"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, -2 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cavernTop/StaticBody2D"]
+
+transform/pos = Vector2( 0, -2 )
+shape = SubResource( 3 )
+trigger = false
+_update_shape_index = 0
+
+[node name="cavernLeft" type="Sprite" parent="."]
+
+transform/pos = Vector2( 453.632, 449.552 )
+texture = ExtResource( 7 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="cavernLeft"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, -3, -1 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cavernLeft/StaticBody2D"]
+
+transform/pos = Vector2( -3, -1 )
+shape = SubResource( 3 )
+trigger = false
+_update_shape_index = 0
+
+[node name="cavernBot" type="Sprite" parent="."]
+
+transform/pos = Vector2( 127.052, 606.703 )
+texture = ExtResource( 8 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="cavernBot"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 0 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cavernBot/StaticBody2D"]
+
+shape = SubResource( 3 )
+trigger = false
+_update_shape_index = 0
+
+[node name="cavernRight" type="Sprite" parent="."]
+
+transform/pos = Vector2( 290.342, 609.159 )
+texture = ExtResource( 9 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="cavernRight"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 3, -1 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cavernRight/StaticBody2D"]
+
+transform/pos = Vector2( 3, -1 )
+shape = SubResource( 3 )
+trigger = false
+_update_shape_index = 0
+
+[node name="cavernBL" type="Sprite" parent="."]
+
+transform/pos = Vector2( 455.688, 609.159 )
+texture = ExtResource( 10 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="cavernBL"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 1 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cavernBL/StaticBody2D"]
+
+transform/pos = Vector2( 0, 1 )
+shape = SubResource( 3 )
+trigger = false
+_update_shape_index = 0
+
+[node name="cavernBR" type="Sprite" parent="."]
+
+transform/pos = Vector2( 131.67, 759.477 )
+texture = ExtResource( 11 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="cavernBR"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 1 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cavernBR/StaticBody2D"]
+
+transform/pos = Vector2( 0, 1 )
+shape = SubResource( 3 )
+trigger = false
+_update_shape_index = 0
+
+[node name="cavernTL" type="Sprite" parent="."]
+
+transform/pos = Vector2( 289.942, 757.969 )
+texture = ExtResource( 12 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="cavernTL"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 1 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cavernTL/StaticBody2D"]
+
+transform/pos = Vector2( 0, 1 )
+shape = SubResource( 3 )
+trigger = false
+_update_shape_index = 0
+
+[node name="cavernTR" type="Sprite" parent="."]
+
+transform/pos = Vector2( 451.943, 759.969 )
+texture = ExtResource( 13 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="cavernTR"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 1 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="cavernTR/StaticBody2D"]
+
+transform/pos = Vector2( 0, 1 )
+shape = SubResource( 3 )
+trigger = false
+_update_shape_index = 0
+
+[node name="caverninTL" type="Sprite" parent="."]
+
+transform/pos = Vector2( 132.729, 913.438 )
+texture = ExtResource( 14 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="caverninTL"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 1 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="caverninTL/StaticBody2D"]
+
+transform/pos = Vector2( 0, 1 )
+shape = SubResource( 3 )
+trigger = false
+_update_shape_index = 0
+
+[node name="caverninBL" type="Sprite" parent="."]
+
+transform/pos = Vector2( 289.93, 914.252 )
+texture = ExtResource( 15 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="caverninBL"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 1 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="caverninBL/StaticBody2D"]
+
+transform/pos = Vector2( 0, 1 )
+shape = SubResource( 3 )
+trigger = false
+_update_shape_index = 0
+
+[node name="caverninBR" type="Sprite" parent="."]
+
+transform/pos = Vector2( 450.389, 912.623 )
+texture = ExtResource( 16 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="caverninBR"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 1 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="caverninBR/StaticBody2D"]
+
+transform/pos = Vector2( 0, 1 )
+shape = SubResource( 3 )
+trigger = false
+_update_shape_index = 0
+
+[node name="caverninTR" type="Sprite" parent="."]
+
+transform/pos = Vector2( 601.402, 912.623 )
+texture = ExtResource( 17 )
+
+[node name="StaticBody2D" type="StaticBody2D" parent="caverninTR"]
+
+input/pickable = false
+shapes/0/shape = SubResource( 3 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, 0, 1 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+constant_linear_velocity = Vector2( 0, 0 )
+constant_angular_velocity = 0.0
+friction = 1.0
+bounce = 0.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="caverninTR/StaticBody2D"]
+
+transform/pos = Vector2( 0, 1 )
+shape = SubResource( 3 )
 trigger = false
 _update_shape_index = 0
 
