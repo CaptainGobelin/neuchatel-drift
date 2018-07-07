@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=1]
+[gd_scene load_steps=6 format=1]
 
 [ext_resource path="res://TilesetBasic.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/PikeBasic.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Board.tscn" type="PackedScene" id=3]
 [ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/Coin.tscn" type="PackedScene" id=5]
 
 [node name="Main" type="Node2D"]
 
@@ -94,5 +95,9 @@ node_b = NodePath("")
 bias/bias = 0.0
 collision/exclude_nodes = true
 softness = 0.0
+
+[node name="Coin" parent="." instance=ExtResource( 5 )]
+
+transform/pos = Vector2( -4229.16, 1353.65 )
 
 

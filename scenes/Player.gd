@@ -11,6 +11,8 @@ var dash_position = false
 var to_dash = false
 var can_dash = true
 var anim_to_play = "normal"
+# Score compte le nombre de pieces ramassees
+var score = 0
 
 func _ready():
 	set_fixed_process(true)
@@ -25,17 +27,19 @@ func _input(event):
 		to_dash = true
 
 func _fixed_process(delta):
+	print("score:" + str(score))
 	print(anim_to_play)
-	if (Input.is_action_pressed("ui_right")) and velocity.x < MAX_VELOCITY:
-		if on_ground:
-			velocity.x += 80
-		else:
-			velocity.x += 50
-	if (Input.is_action_pressed("ui_left")) and -velocity.x < MAX_VELOCITY:
-		if on_ground:
-			velocity.x -= 80
-		else:
-			velocity.x -= 50
+	if animator.get_current_animation() != "black_flash":
+		if (Input.is_action_pressed("ui_right")) and velocity.x < MAX_VELOCITY:
+			if on_ground:
+				velocity.x += 80
+			else:
+				velocity.x += 50
+		if (Input.is_action_pressed("ui_left")) and -velocity.x < MAX_VELOCITY:
+			if on_ground:
+				velocity.x -= 80
+			else:
+				velocity.x -= 50
 	if (to_jump and on_ground):
 		velocity.y -= 33 * 60
 	if (abs(velocity.x) < 30):
@@ -119,7 +123,8 @@ func respawn():
 			min_dist = current_dist
 		count += 1
 	set_global_pos(checkpoints.get_child(closer).get_global_pos())
-	velocity = Vector2(0, 0)
+	velocity.x = 0
+	velocity.y = 0
 	on_ground = true
 	to_jump = false
 	dash_position = false
@@ -133,3 +138,6 @@ func _on_AnimationPlayer_finished():
 	if animator.get_current_animation() == "black_flash":
 		anim_to_play = "normal"
 		animator.play("normal")
+
+func gather_coin(useless_signal):
+	score += 1
