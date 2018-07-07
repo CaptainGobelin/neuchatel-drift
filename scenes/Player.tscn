@@ -1,7 +1,8 @@
-[gd_scene load_steps=9 format=1]
+[gd_scene load_steps=11 format=1]
 
 [ext_resource path="res://scenes/Player.gd" type="Script" id=1]
 [ext_resource path="res://dat/img/canne_spritesheet.png" type="Texture" id=2]
+[ext_resource path="res://dat/font/ingame.fnt" type="BitmapFont" id=3]
 
 [sub_resource type="CircleShape2D" id=1]
 
@@ -57,6 +58,16 @@ tracks/0/keys = {
 "update": 0,
 "values": [ Color( 0.27523, 0.761719, 0.19043, 1 ), Color( 1, 1, 1, 1 ) ]
 }
+tracks/1/type = "value"
+tracks/1/path = NodePath("Camera2D/ColorFrame:color")
+tracks/1/interp = 1
+tracks/1/imported = false
+tracks/1/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ) ]
+}
 
 [sub_resource type="Animation" id=5]
 
@@ -82,6 +93,16 @@ tracks/1/keys = {
 "transitions": FloatArray( 1 ),
 "update": 1,
 "values": [ 0 ]
+}
+tracks/2/type = "value"
+tracks/2/path = NodePath("Camera2D/ColorFrame:color")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ) ]
 }
 
 [sub_resource type="Animation" id=6]
@@ -110,6 +131,33 @@ tracks/1/keys = {
 "update": 1,
 "values": [ 1, 1, 2, 3, 4, 5, 6, 7, 8 ]
 }
+tracks/2/type = "value"
+tracks/2/path = NodePath("Camera2D/ColorFrame:color")
+tracks/2/interp = 1
+tracks/2/imported = false
+tracks/2/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 0,
+"values": [ Color( 0, 0, 0, 0 ) ]
+}
+
+[sub_resource type="GDScript" id=7]
+
+script/source = "extends Label
+
+var score = 0
+var text = \"CoinCoin: 0\"
+
+func _ready():
+	set_fixed_process(true)
+
+func _fixed_process(delta):
+	score = get_parent().get_parent().score
+	text = \"CoinCoin: \" + str(score)
+	set_text(text)
+	set_global_pos(Vector2(Globals.get(\"display/width\") - get_size().x * get_scale().x , 0))
+	"
 
 [node name="Player" type="KinematicBody2D" groups=[
 "Player",
@@ -129,6 +177,7 @@ script/script = ExtResource( 1 )
 texture = ExtResource( 2 )
 hframes = 9
 frame = 1
+modulate = Color( 0.27523, 0.761719, 0.19043, 1 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
@@ -183,6 +232,33 @@ playback/active = true
 playback/speed = 1.0
 blend_times = [  ]
 autoplay = ""
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+layer = 1
+offset = Vector2( 0, 0 )
+rotation = 0.0
+scale = Vector2( 1, 1 )
+
+[node name="Score" type="Label" parent="CanvasLayer"]
+
+rect/scale = Vector2( 2, 2.5 )
+focus/ignore_mouse = true
+focus/stop_mouse = true
+size_flags/horizontal = 2
+size_flags/vertical = 0
+margin/left = 724.0
+margin/top = -521.0
+margin/right = 842.0
+margin/bottom = -496.0
+custom_fonts/font = ExtResource( 3 )
+text = "Score: 0"
+align = 1
+valign = 1
+percent_visible = 1.0
+lines_skipped = 0
+max_lines_visible = -1
+script/script = SubResource( 7 )
 
 [connection signal="finished" from="AnimationPlayer" to="." method="_on_AnimationPlayer_finished"]
 
