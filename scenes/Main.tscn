@@ -1,11 +1,12 @@
-[gd_scene load_steps=7 format=1]
+[gd_scene load_steps=8 format=1]
 
 [ext_resource path="res://TilesetBasic.tres" type="TileSet" id=1]
 [ext_resource path="res://scenes/PikeBasic.tscn" type="PackedScene" id=2]
 [ext_resource path="res://scenes/Board.tscn" type="PackedScene" id=3]
-[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=4]
-[ext_resource path="res://scenes/EnemyBalloon.tscn" type="PackedScene" id=5]
-[ext_resource path="res://scenes/Coin.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/Coin.tscn" type="PackedScene" id=4]
+[ext_resource path="res://scenes/Player.tscn" type="PackedScene" id=5]
+[ext_resource path="res://scenes/EnemyBalloon.tscn" type="PackedScene" id=6]
+[ext_resource path="res://scenes/ColorSwitch.tscn" type="PackedScene" id=7]
 
 [node name="Main" type="Node2D"]
 
@@ -61,13 +62,17 @@ transform/pos = Vector2( -640, 1344 )
 transform/pos = Vector2( -4672, 960 )
 msg = "Panneau début"
 
-[node name="Player" parent="." instance=ExtResource( 4 )]
+[node name="Coin" parent="Scenery" instance=ExtResource( 4 )]
+
+transform/pos = Vector2( -4229.16, 1353.65 )
+
+[node name="Player" parent="." instance=ExtResource( 5 )]
 
 transform/pos = Vector2( -5248, 960 )
 
 [node name="Enemies" type="Node2D" parent="."]
 
-[node name="EnemyBalloon" parent="Enemies" instance=ExtResource( 5 )]
+[node name="EnemyBalloon" parent="Enemies" instance=ExtResource( 6 )]
 
 transform/pos = Vector2( -3840, 1024 )
 
@@ -93,15 +98,39 @@ softness = 0.0
 
 [node name="2" type="PinJoint2D" parent="Checkpoints"]
 
-transform/pos = Vector2( -2048, 1408 )
+transform/pos = Vector2( -384, 1408 )
 node_a = NodePath("")
 node_b = NodePath("")
 bias/bias = 0.0
 collision/exclude_nodes = true
 softness = 0.0
 
-[node name="Coin" parent="." instance=ExtResource( 6 )]
+[node name="3" type="PinJoint2D" parent="Checkpoints"]
 
-transform/pos = Vector2( -4229.16, 1353.65 )
+transform/pos = Vector2( 8064, 1280 )
+node_a = NodePath("")
+node_b = NodePath("")
+bias/bias = 0.0
+collision/exclude_nodes = true
+softness = 0.0
+
+[node name="ColorSwitch" type="Node2D" parent="."]
+
+[node name="ColorSwitch" parent="ColorSwitch" instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 768, 896 )
+transform/scale = Vector2( 1, 4.25 )
+
+[node name="ColorSwitch3" parent="ColorSwitch" instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 320, 896 )
+transform/scale = Vector2( 1, 4.25 )
+color = Color( 0.126572, 0.410156, 0.144296, 1 )
+
+[node name="ColorSwitch2" parent="ColorSwitch" instance=ExtResource( 7 )]
+
+transform/pos = Vector2( 1216, 896 )
+transform/scale = Vector2( 1, 4.25 )
+color = Color( 0.386719, 0.335358, 0.335358, 1 )
 
 

@@ -50,3 +50,6 @@ func _fixed_process(delta):
 		move(motion)
 	if (not animator.get_current_animation() == anim_to_play):
 		animator.play(anim_to_play)
+
+func die():
+	queue_free()

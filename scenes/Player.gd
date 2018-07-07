@@ -13,6 +13,7 @@ var dash_position = false
 var to_dash = false
 var can_dash = true
 var anim_to_play = "normal"
+var can_fire = true
 # Score compte le nombre de pieces ramassees
 var score = 0
 
@@ -27,7 +28,10 @@ func _input(event):
 		dash_position = true
 	if event.is_action_released("dash") and can_dash:
 		to_dash = true
-	if event.is_action_pressed("boule_de_feu"):
+	if event.is_action_pressed("boule_de_feu") and can_fire:
+		can_fire = false
+		get_node("Timer").set_wait_time(1)
+		get_node("Timer").start()
 		var fireball_instance = fireball_loc.instance()
 		fireball_instance.set_global_pos(get_global_pos())
 		if get_node("Sprite").is_flipped_h():
@@ -154,3 +158,6 @@ func _on_AnimationPlayer_finished():
 
 func gather_coin(useless_signal):
 	score += 1
+
+func _on_Timer_timeout():
+	can_fire = true
