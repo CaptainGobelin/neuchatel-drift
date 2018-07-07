@@ -25,6 +25,7 @@ func _input(event):
 		to_dash = true
 
 func _fixed_process(delta):
+	print(anim_to_play)
 	if (Input.is_action_pressed("ui_right")) and velocity.x < MAX_VELOCITY:
 		if on_ground:
 			velocity.x += 80
@@ -82,7 +83,7 @@ func _fixed_process(delta):
 			move(motion)
 	if dash_position:
 		anim_to_play = "dash_prep"
-	else:
+	elif anim_to_play != "black_flash":
 		anim_to_play = "normal"
 	if not animator.get_current_animation() == anim_to_play:
 		animator.play(anim_to_play)
@@ -118,4 +119,11 @@ func respawn():
 	dash_position = false
 	to_dash = false
 	can_dash = true
-	anim_to_play = "normal"
+	anim_to_play = "black_flash"
+	animator.play("black_flash")
+	yield(animator, "finished")
+
+func _on_AnimationPlayer_finished():
+	if animator.get_current_animation() == "black_flash":
+		anim_to_play = "normal"
+		animator.play("normal")

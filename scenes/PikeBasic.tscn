@@ -25,6 +25,8 @@ bounce = 0.0
 [node name="Sprite" type="Sprite" parent="."]
 
 texture = ExtResource( 1 )
+region = true
+region_rect = Rect2( 0, 0, 128, 128 )
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 
