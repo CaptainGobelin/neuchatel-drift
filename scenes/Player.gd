@@ -83,6 +83,12 @@ func _fixed_process(delta):
 			move(motion)
 	if dash_position:
 		anim_to_play = "dash_prep"
+	if velocity.x > 0:
+		anim_to_play = "run"
+		get_node("Sprite").set_flip_h(false)
+	elif velocity.x < 0:
+		anim_to_play = "run"
+		get_node("Sprite").set_flip_h(true)
 	elif anim_to_play != "black_flash":
 		anim_to_play = "normal"
 	if not animator.get_current_animation() == anim_to_play:
