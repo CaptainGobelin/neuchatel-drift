@@ -1,10 +1,12 @@
 extends Node2D
 
 export(String) var msg = "Je suis un panneau."
+export(Texture) var sprite
 
 var show_message = false
 
 func _ready():
+	get_node("PanneauImg").set_texture(sprite)
 	get_node("FondPanneau/TextePanneau").set_text(msg)
 	set_fixed_process(true)
 

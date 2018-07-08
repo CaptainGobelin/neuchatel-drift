@@ -10,5 +10,5 @@ func _ready():
 # Quand le joueur ramasse la piece elle disparait
 func _on_AreaCoin_body_enter( body ):
 	if body.is_in_group("Player"):
-		get_node("ImgCoin").queue_free()
+		queue_free()
 	

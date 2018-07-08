@@ -26,6 +26,8 @@ func _fixed_process(delta):
 	if (is_colliding()):
 		if get_collider().is_in_group(\"Enemy\"):
 			get_collider().die()
+		if get_collider().is_in_group(\"Obstacle\"):
+			get_collider().destroy()
 		get_node(\"AnimationPlayer\").play(\"die\")
 		set_fixed_process(false)
 

@@ -1,0 +1,147 @@
+[gd_scene load_steps=7 format=1]
+
+[ext_resource path="res://dat/img/hook.png" type="Texture" id=1]
+
+[sub_resource type="CircleShape2D" id=1]
+
+custom_solver_bias = 0.0
+radius = 15.7568
+
+[sub_resource type="GDScript" id=5]
+
+script/source = "extends KinematicBody2D
+
+var velocity = Vector2(0, 0)
+
+func _fixed_process(delta):
+	velocity.y += 100
+	var motion = velocity * delta
+	move(motion)
+	if (is_colliding()):
+		set_fixed_process(false)
+		get_node(\"CollisionShape2D\").set_trigger(false)
+		clear_shapes()
+		if get_collider().is_in_group(\"Player\"):
+			get_collider().respawn()
+			queue_free()
+
+func _on_Area2D_body_enter( body ):
+	if body.is_in_group(\"Player\") and get_node(\"AnimationPlayer\").get_current_animation() != \"Attack\":
+		get_node(\"AnimationPlayer\").play(\"Attack\")
+		get_node(\"Timer\").start()
+
+func _on_Timer_timeout():
+	set_fixed_process(true)
+	get_node(\"Area2D\").clear_shapes()
+	get_node(\"AnimationPlayer\").play(\"Normal\")
+"
+
+[sub_resource type="Animation" id=2]
+
+resource/name = "Attack"
+length = 0.32
+loop = true
+step = 0.08
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:transform/rot")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0, 0.08, 0.16, 0.24 ),
+"transitions": FloatArray( 1, 1, 1, 1 ),
+"update": 0,
+"values": [ 10.0, -10.0, 10.0, -10.0 ]
+}
+
+[sub_resource type="Animation" id=3]
+
+resource/name = "Normal"
+length = 1.0
+loop = true
+step = 0.1
+tracks/0/type = "value"
+tracks/0/path = NodePath(".:transform/rot")
+tracks/0/interp = 1
+tracks/0/imported = false
+tracks/0/keys = {
+"times": FloatArray( 0 ),
+"transitions": FloatArray( 1 ),
+"update": 0,
+"values": [ 0.0 ]
+}
+
+[sub_resource type="RayShape2D" id=4]
+
+custom_solver_bias = 0.0
+length = 524.219
+
+[node name="Hook" type="KinematicBody2D" groups=[
+"Killer",
+"Enemy",
+]]
+
+input/pickable = false
+shapes/0/shape = SubResource( 1 )
+shapes/0/transform = Matrix32( 1, -1.49012e-08, 1.49012e-08, 1, -4.01878, 47.5145 )
+shapes/0/trigger = false
+collision/layers = 1
+collision/mask = 1
+collision/margin = 0.08
+script/script = SubResource( 5 )
+
+[node name="Sprite" type="Sprite" parent="."]
+
+texture = ExtResource( 1 )
+offset = Vector2( 0, 30 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+
+transform/pos = Vector2( -4.01878, 47.5145 )
+transform/rot = 8.53774e-07
+shape = SubResource( 1 )
+trigger = false
+_update_shape_index = 0
+
+[node name="AnimationPlayer" type="AnimationPlayer" parent="."]
+
+playback/process_mode = 1
+playback/default_blend_time = 0.0
+root/root = NodePath("..")
+anims/Attack = SubResource( 2 )
+anims/Normal = SubResource( 3 )
+playback/active = true
+playback/speed = 1.0
+blend_times = [  ]
+autoplay = "Normal"
+
+[node name="Area2D" type="Area2D" parent="."]
+
+editor/display_folded = true
+input/pickable = true
+shapes/0/shape = SubResource( 4 )
+shapes/0/transform = Matrix32( 1, 0, 0, 1, -1.46301, 89.2446 )
+shapes/0/trigger = false
+gravity_vec = Vector2( 0, 1 )
+gravity = 98.0
+linear_damp = 0.1
+angular_damp = 1.0
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+
+transform/pos = Vector2( -1.46301, 89.2446 )
+shape = SubResource( 4 )
+trigger = false
+_update_shape_index = 0
+
+[node name="Timer" type="Timer" parent="."]
+
+process_mode = 1
+wait_time = 0.9
+one_shot = true
+autostart = false
+
+[connection signal="body_enter" from="Area2D" to="." method="_on_Area2D_body_enter"]
+
+[connection signal="timeout" from="Timer" to="." method="_on_Timer_timeout"]
+
+

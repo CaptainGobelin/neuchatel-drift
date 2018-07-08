@@ -1,4 +1,4 @@
-[gd_resource type="TileSet" load_steps=24 format=1]
+[gd_resource type="TileSet" load_steps=27 format=1]
 
 [ext_resource path="res://dat/img/wall_test.png" type="Texture" id=1]
 [ext_resource path="res://dat/img/pike.png" type="Texture" id=2]
@@ -13,11 +13,14 @@
 [ext_resource path="res://dat/img/roche_tiles_in_BR.png" type="Texture" id=11]
 [ext_resource path="res://dat/img/roche_tiles_in_TR.png" type="Texture" id=12]
 [ext_resource path="res://dat/img/herbes_tiles.png" type="Texture" id=13]
-[ext_resource path="res://dat/img/interieur_cabane.png" type="Texture" id=14]
-[ext_resource path="res://dat/img/tronc_tiles.png" type="Texture" id=15]
-[ext_resource path="res://dat/img/branches_tiles.png" type="Texture" id=16]
-[ext_resource path="res://dat/img/roche_tiles.png" type="Texture" id=17]
-[ext_resource path="res://dat/img/roche_tiles_left.png" type="Texture" id=18]
+[ext_resource path="res://dat/img/rock_platform_tiles.png" type="Texture" id=14]
+[ext_resource path="res://dat/img/feuillage.png" type="Texture" id=15]
+[ext_resource path="res://dat/img/green.png" type="Texture" id=16]
+[ext_resource path="res://dat/img/interieur_cabane.png" type="Texture" id=17]
+[ext_resource path="res://dat/img/tronc_tiles.png" type="Texture" id=18]
+[ext_resource path="res://dat/img/branches_tiles.png" type="Texture" id=19]
+[ext_resource path="res://dat/img/roche_tiles.png" type="Texture" id=20]
+[ext_resource path="res://dat/img/roche_tiles_left.png" type="Texture" id=21]
 
 [sub_resource type="RectangleShape2D" id=1]
 
@@ -74,7 +77,7 @@ extents = Vector2( 63.7221, 30.5966 )
 2/shape_offset = Vector2( 64, 75 )
 2/shapes = [ SubResource( 2 ) ]
 3/name = "Interior_wood"
-3/texture = ExtResource( 14 )
+3/texture = ExtResource( 17 )
 3/tex_offset = Vector2( 0, 0 )
 3/modulate = Color( 1, 1, 1, 1 )
 3/region = Rect2( 0, 0, 128, 128 )
@@ -83,7 +86,7 @@ extents = Vector2( 63.7221, 30.5966 )
 3/shape_offset = Vector2( 0, 0 )
 3/shapes = [  ]
 4/name = "Wood"
-4/texture = ExtResource( 15 )
+4/texture = ExtResource( 18 )
 4/tex_offset = Vector2( 0, 0 )
 4/modulate = Color( 1, 1, 1, 1 )
 4/region = Rect2( 0, 0, 128, 128 )
@@ -92,7 +95,7 @@ extents = Vector2( 63.7221, 30.5966 )
 4/shape_offset = Vector2( 64, 64 )
 4/shapes = [ SubResource( 3 ) ]
 5/name = "Branch"
-5/texture = ExtResource( 14 )
+5/texture = ExtResource( 17 )
 5/tex_offset = Vector2( 0, 0 )
 5/modulate = Color( 1, 1, 1, 1 )
 5/region = Rect2( 0, 0, 128, 128 )
@@ -101,7 +104,7 @@ extents = Vector2( 63.7221, 30.5966 )
 5/shape_offset = Vector2( 64, 64 )
 5/shapes = [ SubResource( 5 ) ]
 6/name = "Wood1"
-6/texture = ExtResource( 16 )
+6/texture = ExtResource( 19 )
 6/tex_offset = Vector2( 0, 0 )
 6/modulate = Color( 1, 1, 1, 1 )
 6/region = Rect2( 0, 0, 128, 128 )
@@ -110,7 +113,7 @@ extents = Vector2( 63.7221, 30.5966 )
 6/shape_offset = Vector2( 64, 64 )
 6/shapes = [ SubResource( 3 ) ]
 7/name = "Black"
-7/texture = ExtResource( 14 )
+7/texture = ExtResource( 17 )
 7/tex_offset = Vector2( 0, 0 )
 7/modulate = Color( 0, 0, 0, 1 )
 7/region = Rect2( 0, 0, 128, 128 )
@@ -119,7 +122,7 @@ extents = Vector2( 63.7221, 30.5966 )
 7/shape_offset = Vector2( 0, 0 )
 7/shapes = [  ]
 8/name = "cavernTop"
-8/texture = ExtResource( 17 )
+8/texture = ExtResource( 20 )
 8/tex_offset = Vector2( 0, 0 )
 8/modulate = Color( 1, 1, 1, 1 )
 8/region = Rect2( 0, 0, 128, 133 )
@@ -128,7 +131,7 @@ extents = Vector2( 63.7221, 30.5966 )
 8/shape_offset = Vector2( 64, 66.5 )
 8/shapes = [ SubResource( 3 ) ]
 9/name = "cavernLeft"
-9/texture = ExtResource( 18 )
+9/texture = ExtResource( 21 )
 9/tex_offset = Vector2( 0, 0 )
 9/modulate = Color( 1, 1, 1, 1 )
 9/region = Rect2( 0, 0, 133, 128 )
@@ -226,4 +229,31 @@ extents = Vector2( 63.7221, 30.5966 )
 19/navigation_offset = Vector2( 64, 64 )
 19/shape_offset = Vector2( 64, 64 )
 19/shapes = [ SubResource( 3 ) ]
+20/name = "Roc"
+20/texture = ExtResource( 14 )
+20/tex_offset = Vector2( 0, 0 )
+20/modulate = Color( 1, 1, 1, 1 )
+20/region = Rect2( 0, 0, 128, 128 )
+20/occluder_offset = Vector2( 64, 64 )
+20/navigation_offset = Vector2( 64, 64 )
+20/shape_offset = Vector2( 64, 64 )
+20/shapes = [ SubResource( 3 ) ]
+21/name = "Feullage"
+21/texture = ExtResource( 15 )
+21/tex_offset = Vector2( 0, 0 )
+21/modulate = Color( 1, 1, 1, 1 )
+21/region = Rect2( 0, 0, 128, 128 )
+21/occluder_offset = Vector2( 64, 64 )
+21/navigation_offset = Vector2( 64, 64 )
+21/shape_offset = Vector2( 64, 64 )
+21/shapes = [ SubResource( 3 ) ]
+22/name = "Green"
+22/texture = ExtResource( 16 )
+22/tex_offset = Vector2( 0, 0 )
+22/modulate = Color( 1, 1, 1, 1 )
+22/region = Rect2( 0, 0, 128, 128 )
+22/occluder_offset = Vector2( 64, 64 )
+22/navigation_offset = Vector2( 64, 64 )
+22/shape_offset = Vector2( 0, 0 )
+22/shapes = [  ]
 

@@ -134,10 +134,11 @@ func respawn():
 	var closer = 0
 	var count = 0
 	for cp in checkpoints.get_children():
-		var current_dist = cp.get_global_pos().distance_to(get_global_pos())
-		if current_dist < min_dist:
-			closer = count
-			min_dist = current_dist
+		if (cp.is_passed):
+			var current_dist = cp.get_global_pos().distance_to(get_global_pos())
+			if current_dist < min_dist:
+				closer = count
+				min_dist = current_dist
 		count += 1
 	set_global_pos(checkpoints.get_child(closer).get_global_pos())
 	velocity.x = 0
@@ -158,6 +159,7 @@ func _on_AnimationPlayer_finished():
 
 func gather_coin(useless_signal):
 	score += 1
+	get_node("CanvasLayer/AnimationPlayer").play("gatherCoin")
 
 func _on_Timer_timeout():
 	can_fire = true
